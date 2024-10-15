@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: collabsphere-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: collabsphere-server
+  template:
+    metadata:
+      labels:
+        app: collabsphere-server
+    spec:
+      containers:
+      - name: collabsphere-server
+        image: sakshamgupta912/collabsphere-server:__IMAGE_TAG__
+        ports:
+        - containerPort: 3000
