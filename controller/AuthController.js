@@ -53,13 +53,13 @@ const login = async (req, res) => {
         let password = req.body.password;
         bcrypt.compare(password, user.password, function (error, result) {
           if (error) {
-            password = undefined;
+            delete (password);
             res.json({
               error,
             });
           }
           if (result) {
-            password = undefined;
+            delete (password);
             let token = jwt.sign({ name: user.employeeID }, "AzQPI!", {expiresIn: "1000h"});
             // let refreshtoken = jwt.sign({ name: user.employeeID }, 'secretrefreshtoken', {expiresIn: "24h"});
             // res.cookie('jwt',token, { httpOnly: false, secure: false, maxAge: 3600000 });
